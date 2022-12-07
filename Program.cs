@@ -70,6 +70,10 @@ foreach ( var subPath in subFiles )
   }
 }
 
+Process.Start("explorer.exe", NormalizePath(mergedDir));
+Console.WriteLine("DONE!");
+
+
 static string CommonPrefix( params string[] strings )
 {
   var commonPrefix = strings.FirstOrDefault() ?? "";
@@ -92,4 +96,10 @@ static string CommonPrefix( params string[] strings )
   }
 
   return commonPrefix;
+}
+
+static string NormalizePath( string path )
+{
+  return Path.GetFullPath( new Uri( path ).LocalPath )
+    .TrimEnd( Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar );
 }

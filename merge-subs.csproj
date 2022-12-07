@@ -6,6 +6,10 @@
     <RootNamespace>merge_subs</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>merge-subs</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
