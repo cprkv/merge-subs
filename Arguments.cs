@@ -7,24 +7,39 @@ public class Arguments
   public string MkvPath { get; set; }
   public string SubPath { get; set; }
   public string SubPattern { get; set; }
+  public string AudioPath { get; set; }
+  public string AudioExtension { get; set; }
   public string MkvToolnix { get; set; }
 
   public static Arguments Parse( string[] args )
   {
     var parser = new CommandLineParser<Arguments>();
 
-    parser.Configure( o => o.MkvPath )
-      .Name( "m", "mkv" )
-      .Description( "path to mkv files" )
-      .Required();
-
     parser.Configure( o => o.SubPath )
       .Name( "s", "sub" )
       .Description( "path to subtitle files" )
       .Required();
 
+    parser.Configure( o => o.MkvPath )
+      .Name( "m", "mkv" )
+      .Description( "path to mkv files" )
+      .Default( "." )
+      .Required( false );
+
+    parser.Configure( o => o.AudioPath )
+      .Name( "a", "audio" )
+      .Description( "path to audio files" )
+      .Default( null )
+      .Required( false );
+
+    parser.Configure( o => o.AudioExtension )
+      .Name( "ae" )
+      .Description( "audio files extension" )
+      .Default( ".mka" )
+      .Required( false );
+
     parser.Configure( o => o.SubPattern )
-      .Name( "e", "ext" )
+      .Name( "se" )
       .Description( "subtitle files pattern" )
       .Default( "*.srt" )
       .Required( false );
